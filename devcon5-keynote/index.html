@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevCon5 Peter Lubbers Keynote</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/custom.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+
+<body style="opacity:0;">
+
+<slides class="layout-widescreen">
+
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+      <img style="padding-top: 1em" src="images/devcon5.png">
+    </hgroup>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Introduction</h2>
+    </hgroup>
+    <article id="who">
+      <span class="build"><p class="avatar rounded"></p></span>
+      <img style="border-radius:8px;" src="images/peterlubbers.jpg">
+      
+      <p style="margin-top:0.25em">Peter Lubbers<br>Program Manager, Chrome Developer Relations<br>Google</p>
+      
+      <p style="margin-top:0.25em">
+          <img src="images/gprofile_button-44.png" width="44" height="44"> <a rel="author" href="https://plus.google.com/u/0/112811650518962267774">+Peter Lubbers</a>
+      </p>
+      <p>
+        <img src="images/twitter_newbird_blue.png" width="44" height="58"> <a rel="author" href="https://twitter.com/peterlubbers">@peterlubbers</a>
+      </p>
+
+      <p style="float:right;font-size:small;">
+        Photo by <a href="https://plus.google.com/u/0/112374836634096795698/posts/849Hnfpzbws">+Guy Kawasaki</a>
+      </p>
+    </article>
+  </slide>
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 1.5em;">Evolution Not Revolution</span>.</q>
+        <p> 
+             <div class="author">
+        HTML5 design principle, (<a href="http://www.w3.org/TR/html-design-principles/#evolution-not-revolution">W3C</a>)
+      </div>
+        
+    </article>
+  </slide>     
+
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">Agenda</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Introduction</li>
+        <li>Connectivity and Real Time Communication</li>
+          <ul>
+            <li><span style="font-style:italic;">Who</span> <span class="blue">is communicating</span>?</li>
+            <li><span style="font-style:italic;">How</span> <span class="blue">is communication established</span>?</li>
+            <li><span style="font-style:italic;">What</span> <span class="blue">is communicated</span>?</li>
+          </ul>
+        <li>Questions and Answers</li>
+      </ul>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Feature Areas</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/html5-feature-areas.png" alt="HTML5 Feature Areas" title="Description" class="reflect">
+      <footer class="source"><span>HTML5 badges by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a></span></footer>
+    </article>
+  </slide>
+
+<!-- WHO? -->    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;"><span class="blue">Who</span> is communicating?</p>
+    </article>
+  </slide>
+    
+  <slide class="fill nobackground" style="background: url(./images/origin-haynes.jpg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 style="color:white">Web Origins</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Charles Haynes <a href="http://www.flickr.com/photos/haynes/">flickr.com/photos/haynes</a></footer>
+    </article> 
+  </slide>
+
+  <slide class="segue ">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 57px;">An origin consists of three parts:<br><span class="red">Scheme</span>, <span class="blue">Host</span>, and <span class="green">Port</span></p>
+    </article>
+  </slide>
+    
+  <slide>
+    <hgroup>
+      <h2>Example Origins</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div>   
+          <pre class="prettyprint" data-lang="Origin">
+# The following origins are all different
+# (default HTTP ports 80 and 443 are used if nothing is specified):
+http://www.example.com 
+http://img.example.com
+https://www.example.com
+http://www.example.com:9999
+</pre>
+</div>
+          <div>
+         <pre class="prettyprint" data-lang="Origin">
+# The origin is taken literally by browsers. For example:
+http://localhost:9999
+#is not the same as:
+htpp://127.0.0.1:9999
+</pre>
+            </div>
+          <div>
+        <pre class="prettyprint" data-lang="Origin">
+# Note the new WebSocket schemes (80 and 443 are the default ports):
+ws://websockets.org
+wss://websockets.org
+</pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+        
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 1.5em;">Without any security model, user agents might undertake actions detrimental to the user or to other parties. 
+            Over time, many web-related technologies have converged towards a common security model known colloquially as 
+            the <span style="font-style:italic">same-origin policy</span>.</q>
+        <p> 
+             <div class="author">
+        The Web Origin Concept (<a href="http://www.ietf.org/rfc/rfc6454.txt">RFC 6454</a>)
+      </div>
+        
+    </article>
+  </slide>    
+    
+  <slide>
+    <hgroup>
+      <h2>Same Origin Policy and CORS</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li></li>
+        <li>Same-origin policy can be too restrictive for modern web appps</li>
+        <li>Led to (vulnerable) hacks like JSONP</li>
+        <li>Cross Origin Resource Sharing (<a href="http://enable-cors.org/">CORS</a>)</li>
+          <ul>
+            <li>Allows opt-in exemptions from the Same-Origin Policy</li>
+            <li>Allows for loosely-coupled architetures</li>  
+            <li>Server participation required</li>
+            <li>Used in XHR, WebSocket, etc.</li>  
+          </ul>
+      </ul>
+    </article>
+  </slide>
+
+    <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 3em;">With XHR and CORS, you receive data instead of [JSONP] code, which you can parse safely</q>
+         <div class="author">
+        Frank Salim
+      </div>
+    </article>
+  </slide>
+    
+     <slide>
+    <hgroup>
+      <h2>CORS Headers</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div>
+          <p>Browser to Server:</p>
+          <pre class="prettyprint" data-lang="HTTP">
+HTTP POST /main HTTP/1.1
+...
+Referer: http://www.example.com/slides
+Origin: http://www.example.com
+
+</pre>
+        </div>
+        <div>
+        <p>Server to Browser:</p>
+      <pre class="prettyprint" data-lang="HTTP">
+# Space separated origin list
+# Important: Think twice before adding *
+Access-Control-Allow-Origin: http://www.example.com
+Access-Control-Allow-Credentials: true
+</pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">Web Intents</p>
+    </article>
+  </slide>
+    
+      <slide class="fill nobackground" style="background: url(./images/webinatent.jpeg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2>What is a "Web In Tent"?</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Stuart Heath <a href="http://www.flickr.com/photos/misteraitch">flickr.com/photos/misteraitch</a></footer>
+    </article> 
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">Web Intents</h2>
+    </hgroup>
+              <img style="float:right;" src="images/webintents.jpg" alt="Connectivity and Real Time Feature Area">
+    <article>
+      <ul>
+        <li>A client-side framework that allows users to use their preferred applications for actions on content-types</li>
+        <li>Advantages:</li>
+          <ul>
+            <li>No complex white-listing on both sides</li>
+            <li>Removes tight coupling (widgets)</li>
+            <li>Removes complex authorization dance (server to server)</li>
+            <li>Works offline</li>  
+            <li>Simple 2-step configuration</li>  
+          </ul>  
+      </ul>
+              <footer class="source">For more information: <a href="http://webintents-io12.appspot.com/#2">Paul Kinlan's Web Intents Presentation from Google I/O</a></footer>
+
+    </article>
+  </slide>    
+    
+  <slide>
+    <hgroup>
+      <h2>Web Intents Example</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/web-intents-example.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">Example: Imagemator <a href="http://www.imagemator.com/">imagemator.com</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup> <h2>Step 1. Show what you can do</h2> <h3>Define the <strong>data</strong> your app can handle</h3> </hgroup>
+    <article style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="chrome app manifest">{
+  "name": "An app", "version": "1",
+  "intents": {
+    "http://webintents.org/save": [{
+      <b>"type":["image/*"],</b>
+      "href":"/save.html",
+      "disposition": "inline"
+    }]
+  }
+} </pre>
+  <pre class="prettyprint" data-lang="soon: html - open web">&lt;intent
+  action="http://webintents.org/save"
+  <b>type="image/*"</b>
+  href="save.html"
+  disposition="inline" /&gt;</pre>
+    </article> 
+  </slide>
+
+  
+  <slide>
+    <hgroup> <h2>Step 2. Prepare to receive data</h2> </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+if(<b>window.webkitIntent</b>) {
+  var i = window.webkitIntent;
+  if(<b>i.action == "http://webintents.org/save"</b>) {
+    if(<b>i.type == "image/png"</b>) {
+      img.src = <b>i.data</b>; // the data
+    }
+  }
+} </pre>
+
+      <button id="demobtn">Demo in Debugger</button>
+      <script>
+        demobtn.addEventListener("click", function () {
+          var i = new WebKitIntent({action: "http://webintents.org/save", type:"text/uri-list", data: "http://paul.kinlan.me" });
+          window.navigator.webkitStartActivity(i); 
+        }, false);
+
+      </script>
+    </article> 
+  </slide>    
+    
+    
+    
+    
+    
+    
+<!-- HOW? -->
+    
+    
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;"><span class="blue">How</span> is communication established?</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">Connectivity and Real Time Features</h2>
+    </hgroup>
+              <img style="float:right;" src="images/connectivity.png" alt="Connectivity and Real Time Feature Area">
+    <article>
+      <ul>
+        <li>Cross Document Messaging</li>
+        <li>XMLHttpRequest Level 2</li>
+        <li>Server-Sent Events</li>
+        <li>WebSocket</li>
+        <li>WebRTC</li>
+      </ul>
+    </article>
+  </slide>
+    
+      <slide>
+    <hgroup>
+      <h2>A Note about Browser Support</h2>
+      <h3>Some great resources:</h3>
+       <ul>
+        <li>Can I Use website: <a href="http://caniuse.com">caniuse.com</a></li> 
+        <li>Mobile HTML5 website: <a href="http://mobilehtml5.org">mobilehtml5.org</a></li>         
+        <li>Compatibility matrixes on MDN: <a href="http://mdn.org">mdn.org</a></li>
+       </ul>
+    </hgroup>
+          
+    <article class="flexbox vcenter" style="height:65%">
+      <div class="browser-support">
+        <img src="images/browser_logos/safari_logo.png" class="supported">
+        <img src="images/chrome_logo.png" class="supported">
+        <img src="images/browser_logos/ff_logo.png" class="supported">
+        <img src="images/browser_logos/opera_logo.png" class="supported">
+        <img src="images/browser_logos/ie10_logo.png" class="supported">
+      </div>
+    </article>
+  </slide>
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">Cross Document Messaging</p>
+    </article>
+  </slide> 
+    
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">Cross Document Messaging</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><code>postMessage</code> API</li>
+        <li>Allows you to securely send messages to another page, tab, or iFrame</li>
+        <li>Also used in Web Workers</li>  
+        <li>Cross-Origin Support</li>
+        <li>Use caution when adding <code>message</code> event listeners (use an origin white list)</li>
+      </ul>
+    </article>
+  </slide> 
+
+  <slide>
+    <hgroup>
+      <h2>Cross Document Messaging Example</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/dzslides.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">Example by Paul Rouget: <a href="http://paulrouget.com/dzslides/">DZSlides</a></footer>
+    </article>
+  </slide>    
+        
+     <slide>
+    <hgroup>
+      
+      <h2>Example: <code>postMessage()</code></h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div>
+          <p>Sending messages:</p>
+          <pre class="prettyprint" data-lang="js">
+worker.postMessage(<b>'Hello World'</b>);
+window.postMessage(<b>JSON.stringify({msg: 'Hello World'})</b>, 'http://www.example.com');
+</pre>
+        </div>
+        <div>
+        <p>Receiving messages:</p>
+<pre class="prettyprint" data-lang="js">
+window.addEventListener("message", processMessage,true); 
+
+function processMessage(e) { 
+  if (e.origin == "http://www.example.com") {
+    // Only process from trusted source! 
+    processMessage(e.data); 
+  } 
+}
+// Some more exciting options later...
+</pre>
+        </div>
+      </div>
+    </article>
+  </slide>    
+    
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">XMLHttpRequest Level 2</p>
+    </article>
+  </slide> 
+    
+    
+    
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">XMLHttpRequest Level 2</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>New features in Level 2:</li>
+        <ul>
+            <li>Cross-domain support (using CORS)</li>
+            <li>Named progress events (instead of numeric codes):</li>
+              <ul>
+                  <li><code>loadstart, progress, error, abort, load, loadend</code></li></ul>
+            <li>Proper binary support XHR <code>responseType</code> <br>(forget overriding the mime type with a user-defined charset)</li>
+            
+            <ul>
+                <li><code>text, blob, document, arraybuffer*</code> 
+                    <br>* <i>just deprecated in favor of typed array</i></li>
+            </ul>
+            
+        </ul>
+      </ul>
+    </article>
+  </slide> 
+    
+      <slide>
+    <hgroup>
+      <h2>XMLHttpRequest Level 2 Example</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/xhr2.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">Example by Eric Bidelman: <a href="http://www.html5rocks.com/en/tutorials/file/xhr2/#toc-example-slicingfiles">HTML5 Rocks!</a></footer>
+    </article>
+  </slide>    
+    
+     <slide>
+    <hgroup>
+      
+    <h2>Example: <code>XMLHttpRequest Level 2</code></h2>
+    </hgroup>
+    <article>
+     
+        <div>
+          <p></p>
+          <pre class="prettyprint" data-lang="js">
+function upload(blobOrFile) {
+  var xhr = new XMLHttpRequest();
+  //Can send cross domain now
+  xhr.open('POST', '/server', true);
+  xhr.onload = function(e) { ... };
+  xhr.send(blobOrFile);
+}
+</pre>
+        </div>
+     
+    </article>
+  </slide>            
+        
+        
+        
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">Server-Sent Events</p>
+    </article>
+  </slide>    
+
+  <slide class="fill nobackground" style="background: url(./images/sse-1way-satguru.jpg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 style="color:white;">Server-Sent Events</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Satguru <a href="http://www.flickr.com/photos/satguru">flickr.com/photos/satguru</a></footer>
+    </article> 
+  </slide> 
+    
+    <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">Server-Sent Events</h2>
+    </hgroup>
+    <article>
+      <ul>
+            <li><code>eventSource</code> API</li>
+            <li>Use only when data doesn't need to be sent from the client to the server</li>
+            <li>Standardization of server-side push</li>
+            <li>Minimal overhead (tens of bytes, not hundreds)</li>
+            <li>HTTP based (but requires server support)</li>
+       
+      </ul>
+    </article>
+  </slide> 
+    
+  <slide>
+    <hgroup>
+      <h2>Server-Sent Events Example</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/sse.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">Example: <a href="http://demo.kaazing.com/livefeed/">Kaazing Livefeed Demo</a></footer>
+    </article>
+  </slide>   
+    
+  <slide>
+    <hgroup>
+      
+    <h2>Example: <code>Server-Sent Events</code></h2>
+    </hgroup>
+    <article>
+     
+        <div>
+          <p></p>
+          <pre class="prettyprint" data-lang="js">
+//Create new EventSource
+var dataStream = new EventSource("http://www.example.com");
+
+// Add handlers for open and error:
+dataStream.onopen = function(evt) { console.log("open"); } 
+dataStream.onerror = function(evt) { console.log("error"); };
+
+// Handle messages
+dataStream.onmessage = function(evt) { 
+  // Process message
+  console.log("message: " + evt.data);
+} 
+
+</pre>
+        </div>
+     
+    </article>
+  </slide> 
+
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">WebSocket</p>
+    </article>
+  </slide>   
+<!--
+  <slide class="fill nobackground" style="background: url(./images/hack-copyfighting.jpeg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 style="color:white;">Forget Comet Hacks!</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Copyfighting <a href="http://www.flickr.com/photos/copyfighting">flickr.com/photos/copyfighting</a></footer>
+    </article> 
+  </slide>
+    -->
+        
+  <slide class="fill nobackground" style="background: url(./images/socket-dantaylor.jpg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 >Real Socket Power...<br>For the Web!</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Dan Taylor <a href="http://www.flickr.com/photos/dantaylor">flickr.com/photos/dantaylor</a></footer>
+    </article> 
+  </slide> 
+  
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">WebSocket</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Clean standardization for complex hacks used to simulate real time, bidirectional communication</li>
+        <li>W3C API and IETF Protocol</li>
+        <li>Browser can communicate with a remote host (CORS)</li>
+        <li>Allows for higher-level protocol communication (for example, chat, messaging)</li>
+        <li>Need server support<br>See <a href="http://refcardz.dzone.com/refcardz/html5-websocket">my DZone WebSocket Refcard</a> for complete list of servers</li>
+      </ul>
+    </article>
+  </slide>     
+    
+    
+  <slide class="fill nobackground" style="background: url(./images/bidirectional-jeffreywarren.jpg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 style="color:white;">Bidirectional Browser Communication At Last!</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Jeffrey Warren <a href="http://www.flickr.com/photos/jeffreywarren/">flickr.com/photos/jeffreywarren</a></footer>
+    </article> 
+  </slide>
+    
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">So, what about SPDY?</p>
+    </article>
+  </slide>
+    
+      <slide class="fill nobackground" style="background: url(./images/tools-cogdog.png); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 style="color:white;">The right tool for the job</h2> </hgroup>
+    <article>
+      <footer class="source">Photo: Cogdog <a href="http://www.flickr.com/photos/cogdog/">flickr.com/photos/cogdog</a></footer>
+    </article> 
+  </slide>  
+
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 1.25em;">
+        "I use the metaphor of hammers and screwdrivers. Both tools are indispensible in my workshop...<br>
+          <br>Use the right tool for the job.<br>
+          In the case of <strong>page and object delivery use SPDY</strong>. <br>
+          In the case of <span style="font-style:bold">lightweight or streaming data delivery look to WebSocket</span>."
+        </p>
+         <div class="author">
+        Stephen Ludin, Chief Product Architect <br> Akamai (<a href="https://blogs.akamai.com/2012/07/spdy-and-websocket-support-at-akamai.html">Blog post</a>)
+      </div>
+    </article>
+  </slide>
+    
+  <slide>
+    <hgroup>
+      <h2>WebSocket, WebGL, and Device Orientation Example</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/websocket-demo.png" alt="Example" title="Description" >
+      <footer class="source">Kaazing WebSocket racer demo: <a href="http://demo.kaazing.com/racer/">demo.kaazing.com/racer/</a></footer>
+    </article>
+  </slide>    
+        
+ <slide>
+    <hgroup>
+      
+    <h2>Example: <code>WebSocket</code></h2>
+    </hgroup>
+    <article>
+     
+        <div>
+          <p></p>
+          <pre class="prettyprint" data-lang="js">
+// Create new WebSocket, connect to ws://echo.websocket.org
+var exampleSocket = new WebSocket("ws://echo.websocket.org");
+
+// Send messages:
+exampleSocket.send("Hello world"); 
+
+// Listen for messages
+exampleSocket.onmessage = function (event) {  
+  console.log(event.data);  
+}
+
+// Add listeners for the other events:
+exampleSocket.onopen = function(evt) { onOpen(evt) }; 
+exampleSocket.onclose = function(evt) { onClose(evt) }; 
+exampleSocket.onerror = function(evt) { onError(evt) };
+</pre>
+        </div>
+           <footer class="source">WebSocket Echo Demo: <a href="http://www.websocket.org/echo.html">websocket.org/echo.html</a></footer>
+
+    </article>
+  </slide> 
+        
+
+  <slide>
+    <hgroup>
+      <h2>WebSocket Debugging in Chrome Dev. Tools</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/websocket-devtools.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">Use Chrome Developer Tools (Command + Option + I)</a></footer>
+    </article>
+  </slide>   
+        
+        
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">WebRTC</p>
+    </article>
+  </slide>  
+    
+    
+      <slide>
+    <hgroup>
+      <h2>WebRTC</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li></li>
+        <li>Free, open project for real time web communication</li>
+        <li>Uses combination of <code>MediaStream</code> and <code>PeerConnection</code> Javascript APIs<br>
+          See also: <a href="http://dvcs.w3.org/hg/html-media/raw-file/tip/media-source/media-source.html">Media Source Extensions API</a></li>
+        <li>More information: <a href="http://www.webrtc.org/home">webrtc.org</a></li>
+        <li>See Google I/O demo: "Who Am I?" Game: <a href="http://www.playwhoamigame.com/">playwhoamigame.com</a>  
+        <!--
+           <li>Demo: Face detection: <a href="http://neave.github.com/face-detection/">neave.github.com/face-detection/</a>
+           <li>Demo: WebRTC Communication: <a href="http://apprtc.appspot.com/">apprtc.appspot.com/</a>
+           <li>Demo: Xylophone: <a href="http://www.soundstep.com/blog/experiments/jsdetection/">soundstep.com/blog/experiments/jsdetection/</a>
+        -->    
+      </ul>
+    </article>
+  </slide> 
+    
+    
+   <slide>
+    <hgroup>
+      <h2>WebRTC Example</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/webrtc-demo.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">WebRTC Xylophone Example: <a href="http://www.soundstep.com/blog/experiments/jsdetection/">soundstep.com/blog/experiments/jsdetection/</a></footer>
+    </article>
+  </slide>
+    
+    
+<!-- What? -->    
+    
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;"><span class="blue">What</span> is communicated?</p>
+    </article>
+  </slide>
+    
+  <slide class="fill nobackground" style="background: url(./images/beyond-this-point-haynes.jpg); background-reapeat: no-repeat; background-size: 100%;">
+    <hgroup> <h2 style="color:#111;">Strings, JSON, Typed Arrays,<br>Media Streams, oh My!</h2> </hgroup>
+    <article style="float:right">
+      <footer class="source" style="color:whiteSmoke;">Photo: Charles Haynes <a href="http://www.flickr.com/photos/haynes/">flickr.com/photos/haynes/</a></footer>
+    </article> 
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What's Going over the Wire?</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li></li>
+        <li>Strings</li>
+        <li>JSON</li>
+        <li>Complex, binary data:</li>
+          <ul>
+            <li>Typed Arrays (Array Buffers)*
+            <li>Media Streams</li>
+          </ul>
+      </ul>
+    </article>
+            <footer class="source"><p>* For more information about Typed Arrays, see: <a href="http://www.html5rocks.com/en/tutorials/webgl/typed_arrays/">Ilmari Heikkinen's HTML5 Rocks article</a></p>
+</footer>
+
+  </slide>
+    
+    
+ <slide>
+    <hgroup>
+      
+      <h2>Example: <code>postMessage()</code></h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div>
+          <p>1. Basic strings</p>
+          <pre class="prettyprint" data-lang="js">
+worker.postMessage(<b>'Hello World'</b>);
+window.postMessage(<b>JSON.stringify({msg: 'Hello World'})</b>, 'http://www.example.com');
+</pre>
+        </div>
+        <div>
+        <p>2. JSON</p>
+<pre class="prettyprint" data-lang="js">
+worker.postMessage(<b>{msg: 'Look! no strings attached.'}</b>, 'http://www.example.com');
+</pre>
+        </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    
+    <hgroup>
+      <h2>Example: <code>postMessage()</code></h2>
+    </hgroup>
+    <article>
+      <p>3. Complex types (<code>File</code>, <code>Blob</code>, <code>ArrayBuffer</code>) via structured cloning</p>
+      <pre class="prettyprint" data-lang="js">
+var data = [1, 2, 3, 4];
+
+// Blob() in Chrome 20, FF 13
+worker.postMessage(<b>new Blob(data.toString(), {type: 'text/plain'})</b>);
+
+var uint8Array = new Uint8Array(data);
+worker.postMessage(<b>uint8Array</b>);
+worker.postMessage(<b>uint8Array.buffer</b>);
+</pre>
+      <ul class="build">
+        <li>Problem: all of these methods are copies, so not too efficient...</li>
+      </ul>
+    </article>
+  </slide>
+
+    
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">Transferable Objects</p>
+    </article>
+  </slide> 
+    
+    
+  <slide>
+    <hgroup>
+      <h2>Transferable Objects</h2>
+    </hgroup>
+    <article>
+      <p>Same old friend, different semantics:</p>
+      <pre class="prettyprint" data-lang="js">
+// Note: Prefixed for the moment
+worker.webkitPostMessage(arrayBuffer, [arrayBuffer]);
+window.webkitPostMessage(arrayBuffer, targetOrigin, [arrayBuffer]);
+</pre>
+      <ul class="build">
+        <li>Zero-copy
+          <ul>
+            <li>Ownership of data (<code>ArrayBuffer</code>) is transfered to new context (e.g. worker/window). Source buffer becomes unavailable.</li>
+            <li><span class="underline">~50x faster</span> than structured cloning (Chrome 13/FF).</li>
+          </ul>
+        </li>
+        <li>2nd argument is list of what to transfer.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Examples</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="js">
+var uint8Array = new Uint8Array(1024 * 1024 * 32); // 32MB
+
+// Fill'r up!
+for (var i = 0, len = uint8Array.length; i &lt; len; ++i) {
+  uint8Array[i] = i;
+}
+
+worker.<a data-tooltip-property="postMessage" data-tooltip-support='["webkit"]' data-tooltip-js class="bold"></a>(uint8Array, [uint8Array.buffer]);
+</pre>
+      <p>Pass multiple buffers at once and/or additional data:</p>
+      <pre class="prettyprint" data-lang="js">
+worker.<a data-tooltip-property="postMessage" data-tooltip-support='["webkit"]' data-tooltip-js class="bold"></a>({
+  view1: uInt8Array,
+  buffer2: anotherBuffer,
+  username: 'johndoe'
+}, [uInt8Array.buffer, anotherBuffer]);
+</pre>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" data-body-class="blueprint">
+    <hgroup>
+      <h2 class="white">Demo: Transferable Objects</h2>
+    </hgroup>
+    <article>
+      <a href="http://html5-demos.appspot.com/static/workers/transferables/index.html" class="previewframe"><iframe data-src="http://html5-demos.appspot.com/static/workers/transferables/index.html"></iframe></a>
+    </article>
+  </slide>
+
+    <!-- Too much detail...
+  <slide>
+    <hgroup>
+      <h2>Feature Detection</h2>
+    </hgroup>
+    <article>
+    <ul>
+      <li>Feature detecting is a PITA b/c of false positives.</li>
+      <li>If transfered, buffer's <code>.byteLength</code> goes to zero.</li>
+    </ul>
+    <pre class="prettyprint" data-lang="js">
+var ab = new ArrayBuffer(1);
+worker.<a data-tooltip-property="postMessage" data-tooltip-support='["webkit"]' data-tooltip-js class="bold"></a>(ab, [ab]);
+if (ab.byteLength) {
+  alert('Transferables are not supported in your browser!');
+} else {
+  // Transferables are supported.
+}
+</pre>
+    </article>
+  </slide>
+-->
+
+        
+        
+        
+        
+<!--
+  <slide>
+    <hgroup>
+      <h2>More Information</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+      </ul>
+    </article>
+  </slide>
+-->
+   
+        
+        
+        
+        
+    <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <p style="font-size: 60px;">Questions?</p>
+    </article>
+  </slide>
+
+   <slide>
+    <hgroup>
+      <h2>San Francisco HTML5 User Group</h2>
+        <p>Free monthly events, livestreamed and video taped</p>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/sfhtml5.png" alt="@SFHTML5" title="Description" class="reflect">
+      <footer class="source"><span>Join today: <a href="http://sfhtml5.org/"><abbr title="sfhtml5.org">sfhtml5.org</abbr></a></span></footer>
+    </article>
+  </slide>
+
+ <slide>
+    <hgroup>
+      <h2>Google Developers Live</h2>
+      <p>Follow the Chrome Developers Channel Live!</p>
+
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/gdl.jpg" alt="GDL" title="Google Developers Live" class="reflect">
+      <footer class="source"><span>Tune in: <a href="https://developers.google.com/live/"><abbr title="Google Developers Live">developers.google.com/live/</abbr></a></span></footer>
+    </article>
+  </slide>
+
+ <slide>
+    <hgroup>
+      <h2>Get the Book!</h2>
+      <h3><i>Pro HTML5 Programming</i> (Apress, 2011)</h3>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/apress-book.png" alt="Pro HTMl5 Programming" title="Pro HTMl5 Programming" >
+      <footer class="source"><span>Get the book: <a href="www.prohtml5.com"><abbr title="Google Developers Live">prohtml5.com</abbr></a></span></footer>
+    </article>
+  </slide>  
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Thank You!</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </article>
+  </slide>
+
+
+
+  <slide class="backdrop"></slide>
+
+
+
+</slides>
+
+    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33596206-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+      
+
+</body>
+</html>
