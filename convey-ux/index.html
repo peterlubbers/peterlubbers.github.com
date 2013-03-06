@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- HEAD CONTENT -->
+  <head>
+    <title>Peter Lubbers' ConveyUX Presentation</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--This one seems to work all the time, but really small on ipad-->
+    <!--<meta name="viewport" content="initial-scale=0.4">-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" media="all" href="theme/css/default.css">
+    <link rel="stylesheet" media="all" href="theme/css/custom.css">
+    <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+    <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  </head>
+
+  <body style="opacity:0;">
+  <slides class="layout-widescreen">
+
+<!-- START, INTRO -->
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/HTML5_Badge_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <img style="position:absolute;top:25px;left:775px;" src="images/seattle-library.jpg">
+
+    <hgroup class="auto-fadein">
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Looking for these sessions?</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img style="position:absolute;top:25px;left:775px;" src="images/seattle-library-small.jpg">
+
+      <img src="images/agenda.png"  title="Description" >
+      
+      <footer class="source"><span>Seattle Central Library Schedule: <a href="http://www.spl.org/locations/central-library/cen-events-at-the-central-library">www.spl.org</a>, Image <a href="http://en.wikipedia.org/wiki/File:Seattle_Central_Library,_Seattle,_Washington_-_20060418.jpg">Wikimedia Commons</a></span></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>about://me</h2>
+    </hgroup>
+
+    <article id="who">
+      <span class="build"><p class="avatar rounded"></p></span>
+      <img style="border-radius:8px;" src="images/peterlubbers.jpg">
+      <img style="position:absolute;top:105px;left:365px;" src="images/apress-book.png">
+      <img style="position:absolute;top:500px;left:675px;" src="images/sfhtml5-small.png">
+
+      <p style="margin-top:0.25em">Peter Lubbers<br>Program Manager<br>Google Chrome Developer Relations</p>
+
+          <img src="images/gprofile_button-44.png" width="44" height="44"> <a rel="author" href="https://plus.google.com/u/0/112811650518962267774">+Peter Lubbers</a>
+      
+          <img src="images/twitter_newbird_blue.png" width="44" height="58"> <a rel="author" href="https://twitter.com/peterlubbers">@peterlubbers</a>
+      
+    </article>
+
+      <footer>
+        <p style="float:right;font-size:small;">
+          Photo by <a href="https://plus.google.com/u/0/112374836634096795698/posts/849Hnfpzbws">+Guy Kawasaki</a>
+        </p>
+      </footer> 
+  </slide>
+    
+  <slide>
+    <hgroup>
+      <h2 style="margin-bottom:0.5em">Agenda</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Markup and forms</li>
+        <li>Rich graphics and animation</li>
+        <li>Offline web apps</li>
+        <li>Responsive design</li>
+        <li>Touch input</li>
+        <li>Beyond touch</li>
+        <li>Developing HTML5</li>
+      </ul>
+    </article>
+  </slide>
+
+<!-- BACKGROUND -->
+  <slide>
+    <img style="position:absolute;top:140px;left:487px;" src="images/HTML5_Badge_128.png">
+    <hgroup>
+      <h2>HTML5 Feature Areas</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/html5-feature-areas.png" alt="HTML5 Feature Areas" title="Description" class="reflect">
+      <footer class="source"><span>HTML5 badges by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a></span></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Browser Support</h2>
+      <h3>Some great resources:</h3>
+       <ul>
+        <li>Browser compatibility <a href="http://caniuse.com">Can I Use?</a></li> 
+        <li>Web Platform Docs<a href="http://www.webplatform.org/">
+        help document the web forward!</a></li>
+        <li>Modernizr's <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills">all-in-one entirely-not-alphabetical no-bullshit guide to HTML5 fallbacks</a></li>        
+       </ul>
+    </hgroup>
+      <article class="flexbox vcenter" style="height:65%">
+      <div class="browser-support">
+        <img src="images/browser_logos/safari_logo.png" class="supported">
+        <img src="images/chrome_logo.png" class="supported">
+        <img src="images/browser_logos/ff_logo.png" class="supported">
+        <img src="images/browser_logos/opera_logo.png" class="supported">
+        <img src="images/browser_logos/ie10_logo.png" class="supported">
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WebPlatform Docs</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img style="position:absolute;top:100px;left:800px;" src="images/logo-with-text.png">
+      <img src="images/wpd.png"  title="Description" class="reflect">
+      
+      <footer class="source"><span>Source: <a href="http://www.webplatform.org/"><abbr title="Web Platform Docs">webplatform.org</abbr></a></span></footer>
+    </article>
+  </slide>
+
+<!-- MARKUP -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Markup and forms</q>
+    </article>
+  </slide>
+
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 1.5em;">Pave the cowpaths</span>.</q>
+        <p> 
+             <div class="author">
+        HTML5 design principle, (<a href="http://www.w3.org/TR/html-design-principles/#pave-the-cowpaths">W3C</a>)
+      </div>
+        
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Elements</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+
+      <img src="images/html5-before1.gif" alt="Example" title="Description">
+      <img src="images/html5-after1.gif" alt="Example" title="Description">
+
+      <footer class="source">Images from those great <a href="http://html5doctor.com/designing-a-blog-with-html5/">HTML5 Doctors</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Element Adoption</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/adoption-1.png" alt="Example" title="Description" >
+      <footer class="source">Example: <a href="http://googlechrome.github.com/webplatform-metrics/">Chrome Web Platform Metrics</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Input Demo (email)</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+
+<pre class="prettyprint" data-lang="Regex (No longer needed!)">
+^((?>[a-zA-Z\d!#$%&amp;\'*+\-/=?^_`{|}~]+\x20*|\"((?=[\x01-\x7f])[^\"\\]
+|\\[\x01-\x7f])*\"\x20*)*(?<angle>&lt;))?((?!\.)(?>\.?[a-zA-Z\d!#$%
+&amp;\'*+\-/=?^_\`{|}~]+)+|\"((?=[\x01-\x7f])[^\"\\]|\\[\x01-\x7f])*\")@(((
+?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25
+[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-
+\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)>)$
+</pre> 
+
+<pre class="prettyprint" data-lang="html">
+&lt;form&gt;
+  &lt;input type=email name=email required&gt;
+&lt;/form&gt;
+</pre>
+
+      <form>
+        <p>Email Address
+        <input type=email required>
+        </p>
+      </form>
+
+<pre class="prettyprint" data-lang="css">
+:invalid {background-color: #ffdddd;}
+:valid {background-color: #ddffdd;}
+</pre>
+
+      <footer class="source">More demos on <a href="http://robertnyman.com/html5/forms/input-types.html">@robertnyman's site</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Example HTML5 Input (email)</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+
+      <img src="images/email1.png" alt="Example" title="Description">
+      <img src="images/email2.png" alt="Example" title="Description">
+
+      <footer class="source">Read more at <a href="http://www.the-art-of-web.com/html/html5-form-validation/">The Art of Web</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Example Input Adoption (email)</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/adoption-2.png" alt="Example" title="Description">
+      <footer class="source">Example: <a href="http://googlechrome.github.com/webplatform-metrics/">Chrome Web Platform Metrics</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Details Element Demo (email)</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+
+<pre class="prettyprint" data-lang="html">
+&lt;details&gt;
+  &lt;summary&gt;More information&lt;/summary&gt;
+  &lt;p&gt;More, detailed information goes here&lt;/p&gt;
+&lt;/details&gt;
+</pre>
+
+      <details>
+        <summary>More information</summary>
+        <p>Here is some more, detailed information that is probably boring for most people, but super handy for others.</p>
+      </details>
+
+<pre class="prettyprint" data-lang="css">
+details[open] {
+  border: 3px solid paleturquoise;
+  border-radius:8px;
+}
+</pre>
+
+      <footer class="source">See it in action in Kaazing's award-winning  <a href="http://tech.kaazing.com/documentation/html5/3.5/about/setup-guide.html">Setup Guide</a></footer>
+    </article>
+  </slide>
+
+<slide>
+    <hgroup>
+      <span>
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/templates/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>New Template Element</h2>
+    </hgroup>
+    <article ><p>Template contains inert markup intended to be used later:</p>
+
+<pre class="prettyprint" data-lang="html">
+&lt;template id="mytemplate">
+  &lt;img src="" alt="great image">
+  &lt;div class="comment">&lt;/div>
+&lt;/template>
+</pre>
+
+<p>Appending inert DOM to a node makes it go "live":</p>
+</ul>
+<pre class="prettyprint" data-lang="js">
+var t = document.querySelector('#mytemplate');
+t.content.querySelector('img').src = 'http://...';
+document.body.appendChild(<b>t.content.cloneNode(true)</b>);
+</pre>
+
+  <p><strong>Note</strong>: Work directly with the DOM, content is parsed, not rendered.</p>
+  
+  </article>
+
+ <footer class="source"><span>Read more about the new template element in Eric Bidelman's great <a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">HTML5Rocks aricle</a></span></footer>
+
+</slide>
+
+<!-- GRAPHICS -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Rich graphics and animation</q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WebGL Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/stars.png" alt="Example" title="Description">
+
+      <footer class="source"><a href="http://workshop.chromeexperiments.com/stars/">100,000 Stars</a> Chrome experiment</footer>
+    </article>
+  </slide>
+
+   <slide>
+    <hgroup>
+      <h2>getUserMedia and Canvas Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/webrtc-demo.png" alt="Example" title="Description" class="reflect">
+      <footer class="source">getUserMedia Xylophone Example: <a href="http://www.soundstep.com/blog/experiments/jsdetection/">soundstep.com/blog/experiments/jsdetection/</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Canvas Animation Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/aniworx.png" alt="Example" title="Description">
+
+      <footer class="source">Gary Davis' HTML5 canvas-based <a href="http://sandbox.aniworx.com">Aniworx</a> animation software</footer>
+    </article>
+  </slide>
+
+<!--OFFLINE -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Offline web apps</q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Apps that Use ApplicationCache</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/ft.PNG" alt="Financial Times" title="Description" class="reflect">
+      <footer class="source">Financial Times Web App <a href="http://www.ft.com">ft.com</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ApplicationCache Basics</h2>
+      <h3>Create a manifest file (*.appcache)</h3>
+    </hgroup>
+    <article class="smaller">
+      
+      <pre class="prettyprint" data-lang="Manifest">
+CACHE MANIFEST
+# version 2011-07-012 06:06:44
+
+CACHE:
+# html files
+cache.html
+index.html
+# css files
+css/style.css
+# image files
+apple-touch-icon.png
+favicon.ico
+img/fallback.png
+
+FALLBACK:
+/ /demo/fallback.html
+
+NETWORK:
+*
+
+# Although it was removed from the spec, some browsers still require server configuration (mime type for *.appcache)
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ApplicationCache Basics</h2>
+      <h3>Add manifest attribute to the html element</h3>
+    </hgroup>
+    <article>
+      
+      <pre class="prettyprint" data-lang="html">
+&lt;doctype html&gt;
+&lt;html class="no-js" lang="en" manifest="manifest.appcache"&gt;
+</pre>
+<img style="position:absolute;top:275px;left:425px;" src="images/demo.PNG" alt="Demo" title="Description">
+    </article>
+
+      <footer class="source">Demo: <a href="http://appcachefacts.info/demo/">appcachefacts.info/demo/</a></footer>
+  </slide>
+
+<!-- RESPONSIVE DESIGN -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Responsive design</q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Responsive Design Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/apress-demo1.png" alt="Example" title="Description">
+
+      <footer class="source">New interactive version of my Apress book <a href="http://www.apress.com/9781430238645">Pro HTML5 Programming</a> (by Jen Simmons, Chris O'Connor, and Dylan Wooters)</footer>
+    </article>
+  </slide>
+
+<!-- TOUCH -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Touch input</q>
+    </article>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>Touch Demos</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <p>"Responsive input" and simultaneous interactions using both mouse/trackpad and touchscreen</p>
+
+      <img src="images/touch.png" alt="Example" title="Description">
+
+      <footer class="source">Interactive touch laptop experiments by <a href="http://smus.com/touch-laptop-experiments/">Boris Smus</a></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Pointer Events and pointer.js</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <p>Pointer events specification: <a href="http://goo.gl/fAAdp">goo.gl/fAAdp</a></p>
+
+      <img src="images/touch2.png" alt="Example" title="Description">
+
+      <footer class="source">Generalized input article by <a href="http://smus.com/mouse-touch-pointer/">Boris Smus</a></footer>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>WebGL Bookcase</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/bookcase.png" alt="Example" title="Description">
+      <img style="position:absolute;top:120px;left:50px;" src="images/bookcase2.png">
+
+      <footer class="source"><a href="http://workshop.chromeexperiments.com/bookcase/">WebGL bookcase</a> Chrome experiment</footer>
+    </article>
+  </slide>
+
+<!-- BEYOND TOUCH -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Beyond touch</q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Midi Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/lubstep.png" alt="Example" title="WubWubWub Demo" class="reflect">
+      
+      <footer class="source">
+        Chris Wilson's <a href="http://webaudiodemos.appspot.com/wubwubwub/index.html">WubWubWub Demo </a> 
+        Music by: <a href="http://soundcloud.com/rockylubbers">Rocky Lubbers (Soundcloud)</a>
+      </footer>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Speech Input Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/speech.png" alt="Example" title="Speech Demo" class="reflect">
+      
+      <footer class="source">
+        Try it yourself: <a href="https://www.google.com/intl/en/chrome/demos/speech.html">Speech Input Demo</a>
+      </footer>
+    </article>
+  </slide>
+
+
+  <slide>
+   <hgroup>
+      <h2>Gamepad API</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/doodle.jpg" alt="Example" title="WubWubWub Demo" class="reflect">
+      
+      <footer class="source">
+        Check out this <a href="http://www.google.com/doodles/hurdles-2012">Google Doodle with Gamepad support </a> 
+        and see how it was built in this <a href="http://www.html5rocks.com/en/tutorials/doodles/gamepad/">HTML5 Rocks article</a>
+      </footer>
+    </article>
+  </slide>
+    
+  <!-- Developing HTML5 -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Developing HTML5</q>
+    </article>
+  </slide>
+
+  <slide class="segue dark">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 1.5em;">IF UX NOT CODE, NO GOOD AT WEB</span>.</q>
+        <p> 
+             <div class="author">
+        <a href="https://twitter.com/FAKEGRIMLOCK">@FAKEGRIMLOCK</a>
+      </div>
+
+      <img style="position:absolute;top:55px;left:855px;" src="images/FG_AVATAR.jpg">
+        
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Developer Tools to the Rescue!</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <p>CTRL + SHIFT + I (Windows) or CMD + OPTION + I (Mac)
+      <img src="images/devtools.png"  title="Description" >
+      
+      <footer class="source"><span>Chrome Developer Tools: <a href="https://developers.google.com/chrome-developer-tools/">developers.google.com/chrome-developer-tools/</a></span></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>3D Page Inspection</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/dev-moz-3d.png"  title="Description" >
+      
+      <footer class="source"><span>Udacity CS255 in the Firefox Developer Tools <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/3D_view"> Page Inspector 3D View</a></span></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Turning on the Bleeding Edge</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/bite.png"  title="Turning on Chrome flags" class="reflect">
+      
+      <footer class="source"><span>To turn on experimental flags in Chrome: <a href="chrome://flags"><abbr>chrome://flags</abbr></a></span></footer>
+    </article>
+  </slide>
+
+<!-- Developing HTML5 -->
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Final notes</q>
+    </article>
+  </slide>
+
+<!-- EXTRAS -->
+   <slide>
+    <hgroup>
+      <h2>San Francisco HTML5 User Group</h2>
+        <p>First and largest HTML5 Meetup in the world<br>Free monthly events (professionally recorded)</p>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/sfhtml5.png" alt="@SFHTML5" title="Description" class="reflect">
+      <footer class="source"><span>Join today: <a href="http://sfhtml5.org/"><abbr title="sfhtml5.org">sfhtml5.org</abbr></a></span></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Google Developers Live</h2>
+      <p>Tune in to the Chrome Developers Channel (live and recorded)!</p>
+
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/gdl.png" alt="GDL" title="Google Developers Live" class="reflect">
+      <footer class="source"><span>Tune in: <a href="https://developers.google.com/live/"><abbr title="Google Developers Live">developers.google.com/live/</abbr></a></span></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Get the Book!</h2>
+      <h3><i>Pro HTML5 Programming</i> (Apress, 2011)</h3>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/apress-book.png" alt="Pro HTMl5 Programming" title="Pro HTMl5 Programming" >
+      <footer class="source"><span>Get the book: <a href="www.prohtml5.com"><abbr title="Google Developers Live">prohtml5.com</abbr></a></span></footer>
+    </article>
+  </slide>  
+
+  <slide>
+    <hgroup>
+      <h2>Take the Udacity Course!</h2>
+      <p>Udacity's HTML5 Game Programming course (CS255)</p>
+    </hgroup>
+
+    <article class="flexbox vcenter">
+      <img src="images/udacity.png" alt="GDL" title="Udacity CS255" >
+      <footer class="source"><span>Visit <a href="https://www.udacity.com/course/cs255">www.udacity.com/course/cs255</a></span></footer>
+    </article>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </article>
+  </slide>
+
+<!-- THANKS -->
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Thank You!</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33596206-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+      
+</body>
+</html>
